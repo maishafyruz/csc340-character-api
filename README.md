@@ -1,197 +1,80 @@
-# CSC 340 – Character CRUD API
+# CSC 340 – Character MVC Web App
 
 ## Description
-This project implements a RESTful Character CRUD API using Spring Boot, Spring Data JPA, and PostgreSQL (Neon database).
+This project extends the previous Character CRUD API into a full-stack web application using Spring Boot, FreeMarker, and PostgreSQL (Neon database).
 
-The API allows users to:
+The application allows users to:
+- View all characters
+- View character details
 - Create characters
-- Retrieve characters
 - Update characters
 - Delete characters
-- Filter characters by category
 - Search characters by name
+- Filter characters by universe (category)
 
-The API was tested using Postman.
+The application uses server-side rendering with FreeMarker templates.
 
 ---
 
-# Technologies Used
-
+## Technologies Used
 - Java
 - Spring Boot
 - Spring Web
 - Spring Data JPA
+- FreeMarker
 - PostgreSQL (Neon Database)
 - Maven
-- Postman
+- HTML/CSS
 
 ---
 
-# Installation and Setup
+## MVC Features
+- Uses @Controller and Model to pass data to views
+- FreeMarker templates (.ftlh) for UI rendering
+- Dynamic data display using loops and variables
+- Forms for creating and updating characters
+- Navigation between pages (list, details, create, update)
 
-## 1. Clone the repository
+---
 
-```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/csc340-character-api.git
+## Setup Instructions
+
+### 1. Clone the repository
+git clone https://github.com/maishafyruz/csc340-character-api.git  
 cd csc340-character-api
-```
 
-## 2. Configure the database
+### 2. Configure the database
+Update src/main/resources/application.properties:
 
-Create a PostgreSQL database using Neon and update the following properties in:
+spring.datasource.url=dbc:postgresql://ep-floral-lake-aik3mt8a-pooler.c-4.us-east-1.aws.neon.tech:5432/neondb?sslmode=require  
+spring.datasource.username=neondb_owner
+spring.datasource.password=PASSWORD  
 
-```
-src/main/resources/application.properties
-```
+spring.jpa.hibernate.ddl-auto=update  
+spring.jpa.show-sql=true  
 
-Example configuration:
+### 3. Run the application
+./mvnw spring-boot:run  
 
-```
-spring.datasource.url=YOUR_DATABASE_URL
-spring.datasource.username=YOUR_USERNAME
-spring.datasource.password=YOUR_PASSWORD
-
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-```
-
-## 3. Run the application
-
-Start the Spring Boot application:
-
-```bash
-./mvnw spring-boot:run
-```
-
-The API will run at:
-
-```
-http://localhost:8080
-```
+Open in browser:  
+http://localhost:8080/all  
 
 ---
 
-# API Endpoints
-
-## Create Character
-
-POST `/characters`
-
-Example request body:
-
-```json
-{
-  "name": "Wonder Woman",
-  "description": "Amazon warrior princess",
-  "universe": "DC",
-  "power": "Super strength"
-}
-```
+## Features Demonstrated
+- Full CRUD operations via web UI
+- Persistent data using PostgreSQL
+- Dynamic UI using FreeMarker
+- Search by name
+- Filter by universe/category (For extra credit)
 
 ---
 
-## Get All Characters
-
-GET `/characters`
-
-Returns a list of all characters.
+## Demo Video
+[Watch the MVC demo video here](PASTE-YOUR-NEW-VIDEO-LINK)
 
 ---
 
-## Get Character by ID
-
-GET `/characters/{id}`
-
-Example:
-
-```
-GET /characters/1
-```
-
----
-
-## Update Character
-
-PUT `/characters/{id}`
-
-Example request body:
-
-```json
-{
-  "name": "Wonder Woman",
-  "description": "Amazon warrior princess of Themyscira",
-  "universe": "DC",
-  "power": "Super strength and combat skill"
-}
-```
-
----
-
-## Delete Character
-
-DELETE `/characters/{id}`
-
-Example:
-
-```
-DELETE /characters/1
-```
-
----
-
-## Filter Characters by Category
-
-GET `/characters/category/{category}`
-
-Example:
-
-```
-GET /characters/category/Marvel
-```
-
----
-
-## Search Characters by Name
-
-GET `/characters/search?name=substring`
-
-Example:
-
-```
-GET /characters/search?name=witch
-```
-
----
-
-# Error Handling
-
-The API returns appropriate HTTP status codes for invalid requests.
-
-Example:
-
-**404 Not Found**
-
-```
-GET /characters/999
-```
-
-Occurs when a character ID does not exist.
-
-**400 Bad Request**
-
-Occurs when required fields are missing or invalid during character creation.
-
----
-
-# Demo Video
-
-Video demonstration of the API:
-
-https://uncg-my.sharepoint.com/:v:/g/personal/m_fyruz_uncg_edu/IQCFq2fJDQKDQoICFmgg16siAdq6JGNusC98UA8keoWWRA8?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=i93n0r
-
----
-
-# Author
-
+## Author
 Maisha Fyruz  
 CSC 340 – Spring 2026
