@@ -45,17 +45,38 @@ public class CharacterMvcController {
     }
 
     @PostMapping("/create")
-    public String createCharacter(Character character) {
+    public String createCharacter(Character character, Model model) {
+
+        if (character.getName() == null || character.getName().isBlank()
+                || character.getDescription() == null || character.getDescription().isBlank()
+                || character.getUniverse() == null || character.getUniverse().isBlank()
+                || character.getPower() == null || character.getPower().isBlank()) {
+
+            model.addAttribute("error", "All fields are required.");
+            return "character-create";
+        }
+
         characterService.addCharacter(character);
         return "redirect:/all";
     }
 
     @PostMapping("/update")
-    public String updateCharacter(Character character) {
+    public String updateCharacter(Character character, Model model) {
+
+        if (character.getName() == null || character.getName().isBlank()
+                || character.getDescription() == null || character.getDescription().isBlank()
+                || character.getUniverse() == null || character.getUniverse().isBlank()
+                || character.getPower() == null || character.getPower().isBlank()) {
+
+            model.addAttribute("error", "All fields are required.");
+            model.addAttribute("character", character);
+            return "character-update";
+        }
+
         characterService.updateCharacter(character.getCharacterId(), character);
         return "redirect:/view/" + character.getCharacterId();
     }
-
+    
     @GetMapping("/delete/{id}")
     public String deleteCharacter(@PathVariable Long id) {
         characterService.deleteCharacter(id);

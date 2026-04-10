@@ -15,6 +15,10 @@
     <div class="card">
         <h1>Create New Character</h1>
 
+        <#if error??>
+            <p style="color:red;">${error}</p>
+        </#if>
+
         <form action="/create" method="post">
             <label>Name:</label><br>
             <input type="text" name="name"><br><br>

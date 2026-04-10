@@ -29,7 +29,7 @@
     </div>
 
     <p><a href="/all" class="btn">Show All Characters</a></p>
-    
+
     <#if characterList?size == 0>
         <p>No characters found.</p>
     </#if>

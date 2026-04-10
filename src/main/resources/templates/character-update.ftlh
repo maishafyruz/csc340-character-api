@@ -15,6 +15,10 @@
     <div class="card">
         <h1>Update Character</h1>
 
+        <#if error??>
+            <p style="color:red;">${error}</p>
+        </#if>
+
         <form action="/update" method="post">
             <input type="hidden" name="characterId" value="${character.characterId}">
 
